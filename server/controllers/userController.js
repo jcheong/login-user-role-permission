@@ -26,7 +26,6 @@ exports.getUserById = async (req, res) => {
 
 exports.signIn = async (req, res) => {
   try {
-    // const hash = bcrypt.hashSync(req.body.password, 10);
     console.log(req)
     const user = await User.findOne({
       where: { username: req.body.username }
@@ -36,7 +35,7 @@ exports.signIn = async (req, res) => {
       if (user === null) {
         res.json(false);
       }
-      bcrypt.compare(password, user.password, function (err, result) {
+      bcrypt.compare(req.body.password, user.password, function (err, result) {
         if (result === true) {
           console.log("Valid!");
           let token = jwt.sign({ username: user.username }, 'eccolinc', { expiresIn: 129600 });
