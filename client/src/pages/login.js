@@ -1,8 +1,5 @@
-import { useNavigate } from 'react-router-dom'
 import { Button, Container, Card, Form, Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
-import withAuth from '../components/withAuth';
-import App from '../App';
 
 async function loginUser(credentials) {
     return fetch('http://localhost:5000/api/login', {
@@ -16,15 +13,19 @@ async function loginUser(credentials) {
 }
 
 const Login = () => {
-    const [username, setUserName] = useState();
-    const [password, setPassword] = useState();
+    const [username, setUserName] = useState('');
+    const [password, setPassword] = useState('');
     
     const handleLogin = async e => {
         e.preventDefault();
-        const token = await loginUser({
-            username,
-            password
-        });
+        try {
+            const token = await loginUser({
+                username,
+                password
+            });
+        } catch (err) {
+            console.error('Login error:', err);
+        }
     }
 
     return (
