@@ -4,14 +4,13 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import AuthHelperMethods from './components/authHelperMethods';
-import withAuth from './components/withAuth';
 import ProtectedRoute from './components/protectedRoutes';
 import Home from './pages/home';
 import Login from  './pages/login';
 import Settings from './pages/settings';
 import Clients from './pages/clients';
 import Users from './pages/users';
+import Roles from './pages/roles';
 import { useState } from 'react';
 
 const App = () => {
@@ -19,15 +18,14 @@ const App = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<ProtectedRoute user={user} />}>
-          <Route path="/" element={<Home />}>
-            <Route path="/clients" element={<Clients />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/users" element={<Users />} />
-          </Route>
+      <Routes>        
+        <Route path="/" element={<Home />}>        
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/roles" element={<Roles />} />
         </Route>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );
