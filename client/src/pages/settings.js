@@ -4,10 +4,9 @@ const Settings = () => {
     return(
         <Container fluid>
             <h2><span>Features</span></h2>
-            <Nav>
-                <Nav.Item>
-                    <Nav.Link href="/users">Users</Nav.Link>
-                </Nav.Item>
+            <Nav className="flex-column">
+                <Nav.Item><Nav.Link href="/users">Users</Nav.Link></Nav.Item>
+                <Nav.Item><Nav.Link href="/roles">Roles</Nav.Link></Nav.Item>
             </Nav>
         </Container>
     );
